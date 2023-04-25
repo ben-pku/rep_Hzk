@@ -1,0 +1,42 @@
+% De Nardi 2006 JPE
+% Baseline model with entrepreneur
+
+% parameters
+pa.sa = 200;
+pa.sy = 5;
+pa.stheta = 2;
+pa.sk = pa.sa;
+pa.beta = 0.865;
+pa.sigma = 1.5;
+pa.delta = 0.06;
+pa.eta = 1;
+pa.nu = 0.88; % entrep power
+pa.alpha = 0.33; % capital share
+pa.A = 1; % TFP of non-entrepre
+pa.pp = 0.4; % pension proportion
+pa.f = 0.75; % run-away wealth
+pa.pyou = 0.978; %stay young
+pa.pold = 0.911; %stay old
+pa.Py = [.7376 .2473 .0150 .0002 .0000;
+                .1947 .5555 .2328 .0169 .0001;
+                .0113 .2221 .5333 .2221 .0113;
+                .0001 .0169 .2328 .5555 .1947;
+                .0000 .0002 .0150 .2473 .7376];
+pa.Ptheta = [ .964 .036;
+                        .206 .794];
+pa.mina = 0;
+pa.maxa = 1700;
+pa.mink = 0.05;
+pa.maxk = pa.maxa;
+% state variables
+a = linspace(pa.mina, pa.maxa, pa.sa); % asset
+y = [.2468 .4473 .7654 1.3097 2.3742];
+theta = [0 0.514];
+% choice variable
+k = linspace(pa.mink, pa.maxk, pa.sk); % k
+
+% solve the social security
+[vf, pf, tau, r, w ] = pension(pa, a, y, theta, k);
+
+
+
